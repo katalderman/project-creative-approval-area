@@ -1,9 +1,18 @@
- <div id="drop-area">
-  <form class="my-form">
-    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
-    <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-    <label class="button" for="fileElem">Select some files</label>
-  </form>
-  <progress id="progress-bar" max=100 value=0></progress>
-  <div id="gallery" /></div>
+<div id="wrapper">
+
+<!-- Intro -->
+	<section id="intro" class="main">
+		{{!-- <span class="icon fa-diamond major"></span> --}}
+		<h2>New Project</h2>
+    <form action="/upload" enctype="multipart/form-data" method="POST"> 
+    <p>Upload your file for approval here:</p>
+   <input type="file" name="photo">
+   <input type="submit" class="button big dark" value="Upload Photo">
+
+		<ul class="actions">
+			<li><a href="#" class="button big dark">Create Project</a></li>
+		</ul>
+    </form>
+	</section>
+
 </div>

@@ -1,25 +1,31 @@
-<!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+<div id="wrapper">
+<section id="intro" class="main">
+<h2>Create User</h2>
 
 <form action="/createuser" method="POST" id="form-container">
   <label for="email">Email</label>
   <input id="email" type="email" name="email" placeholder="blah@blah.com">
   <br><br>
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <input id="password" type="password" name="password" placeholder="User's Password">
+    <br><br>
+  <label for="firstname">First Name</label>
+  <input id="firstname" type="text" name="firstname" placeholder="Your">
+  <br><br>
+  <label for="lastname">Last Name</label>
+  <input id="lastname" type="text" name="lastname" placeholder="Mom">
+  <br><br>
+    <label for="role">Role</label>
+  <input id="roleclient" type="radio" name="role" value="CLIENT">Client (Limited Permissions)</br>
+  <input id="roleadmin" type="radio" name="role" value="ADMIN">Admin (Full Permissions)</br>
+  <br><br>
 
   {{#if message}}
     <div class="error-message">{{ message }}</div>
   {{/if}}
   <br><br>
 
-  <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-
-  <br><br>
-  <a href="/">Go Home</a>
+  <button class="button big dark">Create account</button>
 </form>
+</section>
+</div>

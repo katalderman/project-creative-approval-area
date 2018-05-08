@@ -2,12 +2,40 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='../stylesheets/style.css' />
+
   </head>
   <body>
 
+ <!-- Navigation -->
+<header id="headernavigation">
+		<div class="inner">
+			<a href="index.html" class="logo">uxkat.co</a>
+			<nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="uiux.html">UI/UX</a>
+        <a href="webdev.html">Web Development</a>
+        <a href="photography.html">Photography</a>
+        <a href="about.html">About Me</a>
+        <a href="#">Resume</a>
+        <a href="#formanchor">Contact</a>
+			</nav>
+		</div>
+	</header>
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
     {{{body}}}
 
-    <script src='/javascripts/script.js' />
+<!-- Footer -->
+<footer id="footer">
+	<ul class="icons">
+		<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+		<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+		<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+		<li><a href="mailto:kat@uxkat.co" class="icon fa-envelope"><span class="label">Email</span></a></li>
+	</ul>
+</footer>
+
+    <script src='./javascripts/script.js'></script>
   </body>
 </html>

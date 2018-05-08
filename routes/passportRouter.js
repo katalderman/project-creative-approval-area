@@ -57,7 +57,7 @@ router.get("/login", (req, res, next) => {
 });
 // LOGIN POST
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/dashboardadmin",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
@@ -66,7 +66,7 @@ router.post("/login", passport.authenticate("local", {
 
 // PRIVATE PAGE - PROJECT CREATE
 router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
-  console.log("the user is: ", req.user)
+  // console.log("the user is: ", req.user)
   if(req.user.role === 'ADMIN'){
     res.render("projectcreate", { user: req.user });
   } else {
@@ -76,10 +76,10 @@ router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
 
 
 
-// PRIVATE PAGE
-router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("passport/private", { user: req.user });
-});
+// // PRIVATE PAGE
+// router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+//   res.render("passport/private", { user: req.user });
+// });
 
 // LOGOUT
 router.get("/logout", (req, res) => {
