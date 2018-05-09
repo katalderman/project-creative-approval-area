@@ -21,7 +21,8 @@ const multer = require('multer'); // file storing middleware
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/project-creative-app', {useMongoClient: true})
+  // .connect('mongodb://localhost/project-creative-app', {useMongoClient: true})
+.connect(process.env.MONGOURI, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -98,7 +99,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Upload Creative for Approval';
+app.locals.title = 'UXKat.co Creative Approval App';
 
 const index = require('./routes/index');
 const passportRouter = require("./routes/passportRouter");
@@ -162,6 +163,11 @@ app.post('/upload',multer(multerConfig).single('photo'),function(req,res){
 //Route 3: serve up the admin area
 app.get('/dashboardAdmin', function(req, res){
   res.render('dashboardAdmin');
+});
+
+//Route 4: serve up the project details & approval/denial options
+app.get('/projectdetails', function(req, res){
+  res.render('projectdetails');
 });
 
 module.exports = app;

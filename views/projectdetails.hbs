@@ -1,0 +1,35 @@
+<div id="wrapper">
+
+<!-- Intro -->
+	<section id="intro" class="main">
+    <h3>{{project.projectName}}</h3>
+		<h3>From {{project.projectOwner}}</h3>
+    <h3>Approvals by {{project.projectClient}}</h3>
+    <h4>Message from Designer: {{project.projectMessage}}</h4>
+    <h4>Preview:</h4> 
+{{project.projectComponent}}
+
+
+
+<form action="/upload" enctype="multipart/form-data" method="POST" id="form-container">
+  <h4>Upload any clarifying files here:</h4>
+   <input type="file" name="component">{{!-- name was photo --}}
+   <input type="submit" class="button medium dark" value="Upload Photo">
+  
+
+  <h4>Approval:</h4>
+  <input id="approvalyes" type="radio" name="approval" value="YES">APPROVED</br>
+  <input id="approvalno" type="radio" name="approval" value="NO">NOT APPROVED</br>
+
+
+		<ul class="actions">
+			<li><a href="#" class="button big dark">Submit Changes / Approval</a></li>
+		</ul>
+
+  </form>
+
+	</section>
+
+</div>
+
+

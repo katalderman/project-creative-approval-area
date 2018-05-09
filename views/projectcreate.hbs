@@ -4,10 +4,33 @@
 	<section id="intro" class="main">
 		{{!-- <span class="icon fa-diamond major"></span> --}}
 		<h2>New Project</h2>
-    <form action="/upload" enctype="multipart/form-data" method="POST"> 
-    <p>Upload your file for approval here:</p>
-   <input type="file" name="photo">
-   <input type="submit" class="button big dark" value="Upload Photo">
+    <form action="/upload" enctype="multipart/form-data" method="POST" id="form-container">
+
+<label for="owner">Project Owner</label>
+  <input id="owner" type="text" name="owner" placeholder="who's the owner? make this a dropdown">
+<br><br>
+
+<label for="client">Project Client</label>
+  <input id="client" type="text" name="client" placeholder="who's the client? make this a dropdown">
+<br><br>
+
+<label for="projectname">Project Name</label>
+  <input id="owner" type="text" name="owner" placeholder="Give the project a wonderful name">
+<br><br>
+
+<label for="projectmessage">Project Message</label>
+  <input id="projectmessage" type="text" name="projectmessage" placeholder="Enter a message to be displayed alongside the creative">
+<br><br>
+
+
+<label for="component">Upload your file for approval here:</label>
+   <input type="file" name="component">{{!-- name was photo --}}
+   <input type="submit" class="button medium dark" value="Upload Photo">
+<br><br>
+
+
+<label for="password">Set Password</label>
+  <input id="password" type="password" name="password" placeholder="set a password other than 1234">
 
 		<ul class="actions">
 			<li><a href="#" class="button big dark">Create Project</a></li>
@@ -16,3 +39,5 @@
 	</section>
 
 </div>
+
+
