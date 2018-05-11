@@ -1,0 +1,37 @@
+<div id="wrapper">
+<section id="intro" class="main">
+<h2>Edit User {{user.email}}</h2>
+{{!-- form action isn't working, i'm getting a 4040 --}}
+<form action="/edituser/{{ user._id }}" method="post">
+  <label for="email">Email</label>
+  <input id="email" type="email" name="editedEmail" value="{{ user.email }}">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="editedPassword" value="{{ user.email }}">
+    <br><br>
+  <label for="firstname">First Name</label>
+  <input id="firstname" type="text" name="editedFirstname" value="{{ user.firstname }}">
+  <br><br>
+  <label for="lastname">Last Name</label>
+  <input id="lastname" type="text" name="editedLastname" value="{{ user.lastname }}">
+  <br><br>
+  <label for="role">Role</label>
+  {{#if isClient }}
+  <input id="roleclient" type="radio" name="role" value="CLIENT" checked>Client (Limited Permissions)</br>
+  <input id="roleadmin" type="radio" name="role" value="ADMIN" >Admin (Full Permissions)</br>
+  {{/if}}
+  {{#if isAdmin}}
+  <input id="roleclient" type="radio" name="role" value="CLIENT" >Client (Limited Permissions)</br>
+  <input id="roleadmin" type="radio" name="role" value="ADMIN" checked>Admin (Full Permissions)</br>
+  {{/if}}
+  <br><br>
+
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+
+  <button class="button big dark" type="submit">Save Changes</button>
+</form>
+</section>
+</div>

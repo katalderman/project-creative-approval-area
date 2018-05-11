@@ -1,0 +1,12 @@
+<div id="wrapper">
+<section id="intro" class="main">
+<h2>User Details for {{ user.email}}</h2>
+<p>Email Address: {{ user.email }}</p>
+{{!-- {{ user.password }} --}}
+<p>Firstname: {{ user.firstname }}</p>
+<p>Lastname: {{ user.lastname }}</p>
+<p>User Role: {{ user.role }}</p>
+{{!-- <p>Id is: {{ user._id }}</p> --}}
+  <button class="button big dark" type="submit" onclick="window.location.href='/edituser/{{user._id}}'" />Edit This User</button>
+</section>
+</div>

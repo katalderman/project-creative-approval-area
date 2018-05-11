@@ -2,35 +2,64 @@
 
 <!-- Intro -->
 	<section id="intro" class="main">
-		{{!-- <span class="icon fa-diamond major"></span> --}}
 		<h2>Administer Users and Projects Here</h2>
 		<ul class="actions">
 			<li><a href="/projectcreate" class="button big dark">Create a New Project</a></li>
 		</ul>
-
-		{{!-- <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p> --}}
-<div id="container">
-      <a href="/logout">Logout</a>
-</div>
+		<div id="container">
+      	<a href="/logout">Logout</a>
+		</div>
 	</section>
 
-<!-- Portfolio Items -->
+<!-- Project List View -->
 	<section class="main items">
 		<article class="item">
-      <h3>Projects</h3>
-			<p>Display the current projects here. Gray out inactive projects. Add edit/delete functionality.</p>
+      		<h3>Projects</h3>
+			{{#each project}}
+			<li>
+            Project Owner: {{this.owner}}
+			Project Client: {{this.client}}
+			Project Name:{{this.projectname}}
+			Project Message:{{this.projectmessage}}
+			Project Image: {{this.imgPath}}
+        	</li>
+			{{else}}
+  			<p class="empty">No content</p>
+    		{{/each}}
 			<ul class="actions">
-<li><a href="/projectcreate" class="button dark">Create New Project</a></li>
+			<li><a href="/projectcreate" class="button dark">Create New Project</a></li>
 			</ul>
 		</article>
+
+<!-- User List View -->
 		<article class="item">
-      <h3>Users</h3>
-			<p>Display the current userlist here. Gray out inactive users. Add edit/delete functionality.</p>
+      		<h3>Users</h3>
+			<ul>
+	  		{{#each user}}
+        	<li>
+            <a href="/viewuser/{{this._id}}">{{ this.email }}</a>
+            {{!-- <form action="/viewuser/{{this._id}}/delete" method="post"> --}}
+                {{!-- <button type="submit">DELETE</button> --}}
+				<a href="/edituser/{{this._id}}"><i class="material-icons">edit</i></a>
+				 <a href="/edituser/{{this._id}}/delete"><i class="material-icons">delete</i></a>
+            {{!-- </form> --}}
+        	</li>
+			{{else}}
+  			<p class="empty">No content</p>
+    		{{/each}}
+			</ul>
+
 			<ul class="actions">
-<li><a href="/createuser" class="button dark">Create New User</a></li>
+			<li><a href="/createuser" class="button dark">Create New User</a></li>
 			</ul>
 		</article>
 </section>
 
 </div>
+
+
+{{!-- <select>
+	{{#each user}}
+  	<option value="{{ this.email }}">{{ this.email }}</option>
+	      {{/each}}
+</select> --}}

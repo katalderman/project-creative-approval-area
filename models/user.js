@@ -18,7 +18,5 @@ const userSchema = new Schema({
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
 
-// userSchema.plugin(passportMongoose, {emailField: "email"})
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;

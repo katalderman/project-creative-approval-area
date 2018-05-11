@@ -48,7 +48,6 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 
-
 // add
 app.use(session({
   secret: "our-project-creative-app-strategy-app",
@@ -106,13 +105,6 @@ const passportRouter = require("./routes/passportRouter");
 app.use('/', index);
 app.use('/', passportRouter);
 
-// SETUP APP
-// const port = process.env.PORT || 3000;  //preconfig your port!
-// app.use('/', express.static(__dirname + '/public')); 
-//let's declare a public static folder, 
-// this is where our client side static files/output go
-
-
 
 // MULTER CONFIG: to get file photos to temp server storage
 const multerConfig = {
@@ -149,25 +141,10 @@ const multerConfig = {
       }
     };
 
-// //Route 1: serve up the homepage
-// app.get('/', function(req, res){
-//   res.render('index.html');
-// });
-
 //Route 2: serve up the file handling solution (it really needs a better user response solution. If you try uploading anything but an image it will still say 'complete' though won't actually upload it. Stay tuned for a better solution, or even better, build your own fork/clone and pull request it back to me so we can make this thing better together for everyone out there struggling with it. 
 app.post('/upload',multer(multerConfig).single('photo'),function(req,res){
- res.send('Complete!');
-});
-// Please note the .single method calls ('photo'), and that 'photo' is the name of our file-type input field!
-
-//Route 3: serve up the admin area
-app.get('/dashboardAdmin', function(req, res){
-  res.render('dashboardAdmin');
-});
-
-//Route 4: serve up the project details & approval/denial options
-app.get('/projectdetails', function(req, res){
-  res.render('projectdetails');
-});
+  res.send('Complete!');
+ });
+ // Please note the .single method calls ('photo'), and that 'photo' is the name of our file-type input field!
 
 module.exports = app;
