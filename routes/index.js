@@ -39,13 +39,15 @@ router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
   }
 });
 
+
 // PROJECT CREATE POST
-router.post('/projectcreate', (req, res, next) => {
+router.post('/projectcreate',uploadCloud.single('photo'),(req, res, next) => {
     const newProject = new Project ({
       owner: req.body.theOwner,
       client: req.body.theClient,
       projectname: req.body.theProjectname,
       projectmessage: req.body.theProjectmessage
+      // need to store component (project images) but not sure how
     });
     newProject.save((err) => {
       if (err) {
@@ -105,6 +107,8 @@ router.post('/projectcreate', (req, res, next) => {
 //     res.redirect('/dashboardAdmin')
 //   })
 // });
+
+
 
 // // DISPLAY ALL THE USERS
 // // url: localhost:3000/viewuser
