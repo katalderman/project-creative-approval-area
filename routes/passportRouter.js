@@ -98,7 +98,7 @@ router.post('/edituser/:id', (req, res, next) => {
       role: editedRole
   })
   .then(() => {
-      res.redirect('/viewuser')
+      res.redirect('/dashboardAdmin')
   })
   .catch( error => {
       console.log("Error while updating: ", error)
@@ -117,6 +117,10 @@ router.delete('/users/:id', (req, res, next) => {
   })
 })
 
+// createuser GET
+router.get("/viewuser", (req, res, next) => {
+  res.render("passport/viewuser");
+});
 
 
 // LOGIN GET
