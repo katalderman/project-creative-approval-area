@@ -35,11 +35,8 @@ router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
   }
 });
 
-
-
-
 // PROJECT CREATE POST
-router.post("/projectcreate", uploadCloud.single('photo'), function(req,res) {
+router.post("/projectcreate", uploadCloud.single('imgPath'), function(req,res) {
     Project.create({
       owner: req.body.theOwner,
       client: req.body.theClient,
@@ -53,73 +50,36 @@ router.post("/projectcreate", uploadCloud.single('photo'), function(req,res) {
 });
 
 
-  //   const newProject = new Project ({
-  //     owner: req.body.theOwner,
-  //     client: req.body.theClient,
-  //     projectname: req.body.theProjectname,
-  //     projectmessage: req.body.theProjectmessage
-  //     // need to store component (project images) but not sure how
-  //   });
-  //   newProject.save((err) => {
-  //     if (err) {
-  //       res.render("projectcreate", { message: "Something went wrong" });
-  //     } else {
-  //       // req.session.currentUser = user;
-  //       res.redirect("/dashboardAdmin");
-  //   }
-  //   });
-  // });
+// // projectcreate POST
+// router.post("/projectcreate", (req, res, next) => {
+// const owner = req.body.theOwner;
+// const client = req.body.theClient;
+// const projectName = req.body.theProjectName;
+// const projectMessage = req.body.theProjectMessage;
+// const imgPath = req.file.url;
 
-
-
-
-
-
-// // createuser POST
-// router.post("/createuser", (req, res, next) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const firstname = req.body.firstname;
-//   const lastname = req.body.lastname;
-//   const role = req.body.role;
-
-//   if (email === "" || password === "") {
-//     res.render("passport/createuser", { message: "Indicate email and password" });
-//     return;
-//   }
-
-//   User.findOne({ email }, "email", (err, user) => {
-//     if (user !== null) {
-//       res.render("passport/createuser", { message: "The email already exists" });
-//       return;
-//     }
-
-//     const salt = bcrypt.genSaltSync(bcryptSalt);
-//     const hashPass = bcrypt.hashSync(password, salt);
-
-//     const newUser = new User({
-//       email,
-//       password: hashPass,
-//       firstname,
-//       lastname,
-//       role
+//     const newProject = new Project({
+//       owner,
+//       client,
+//       projectName,
+//       projectMessage,
+//       imgPath
 //     });
 
-//     newUser.save((err) => {
+//     newProject.save((err) => {
 //       if (err) {
-//         res.render("passport/createuser", { message: "Something went wrong" });
+//         res.render("passport/projectcreate", { message: "Something went wrong" });
 //       } else {
-//         // req.session.currentUser = user;
+//         // req.session.currentProject = project;
 //         res.redirect("/dashboardAdmin");
 //       }
 //     });
 //   });
-// });
 
 
 
  //Route 4: serve up the project details & approval/denial options
- projectRouter.get('/projectdetails', function(req, res){
+ router.get('/projectdetails', function(req, res){
    res.render('projectdetails');
  });
  
@@ -148,3 +108,21 @@ module.exports = router;
 //   }
 //   });
 // });
+
+
+  //   const newProject = new Project ({
+  //     owner: req.body.theOwner,
+  //     client: req.body.theClient,
+  //     projectname: req.body.theProjectname,
+  //     projectmessage: req.body.theProjectmessage
+  //     // need to store component (project images) but not sure how
+  //   });
+  //   newProject.save((err) => {
+  //     if (err) {
+  //       res.render("projectcreate", { message: "Something went wrong" });
+  //     } else {
+  //       // req.session.currentUser = user;
+  //       res.redirect("/dashboardAdmin");
+  //   }
+  //   });
+  // });

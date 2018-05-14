@@ -25,39 +25,39 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-// PROJECT CREATE GET
-router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
-  // console.log("the user is: ", req.user)
-  if(req.user.role === 'ADMIN'){
+// // PROJECT CREATE GET
+// router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
+//   // console.log("the user is: ", req.user)
+//   if(req.user.role === 'ADMIN'){
 
-    User.find({})
-  .then( user => {
+//     User.find({})
+//   .then( user => {
 
-    res.render("projectcreate", { user });
-  }) } else {
-    res.send("Sorry!")
-  }
-});
+//     res.render("projectcreate", { user });
+//   }) } else {
+//     res.send("Sorry!")
+//   }
+// });
 
 
-// PROJECT CREATE POST
-router.post('/projectcreate',uploadCloud.single('photo'),(req, res, next) => {
-    const newProject = new Project ({
-      owner: req.body.theOwner,
-      client: req.body.theClient,
-      projectname: req.body.theProjectname,
-      projectmessage: req.body.theProjectmessage
-      // need to store component (project images) but not sure how
-    });
-    newProject.save((err) => {
-      if (err) {
-        res.render("projectcreate", { message: "Something went wrong" });
-      } else {
-        // req.session.currentUser = user;
-        res.redirect("/dashboardAdmin");
-    }
-    });
-  });
+// // PROJECT CREATE POST
+// router.post('/projectcreate',uploadCloud.single('photo'),(req, res, next) => {
+//     const newProject = new Project ({
+//       owner: req.body.theOwner,
+//       client: req.body.theClient,
+//       projectname: req.body.theProjectname,
+//       projectmessage: req.body.theProjectmessage
+//       // need to store component (project images) but not sure how
+//     });
+//     newProject.save((err) => {
+//       if (err) {
+//         res.render("projectcreate", { message: "Something went wrong" });
+//       } else {
+//         // req.session.currentUser = user;
+//         res.redirect("/dashboardAdmin");
+//     }
+//     });
+//   });
 
 
 function renderDashboard(req,res,next) {
@@ -99,6 +99,44 @@ function renderDashboard(req,res,next) {
    console.log('who is logged in: ', req.user)
    res.render('passport/viewuser', { user: req.user });
  });
+
+
+// PROJECT CREATE GET
+router.get("/projectcreate", ensureLogin.ensureLoggedIn(), (req, res) => {
+  // console.log("the user is: ", req.user)
+  if(req.user.role === 'ADMIN'){
+
+    User.find({})
+  .then( user => {
+
+    res.render("projectcreate", { user });
+  }) } else {
+    res.send("Sorry!")
+  }
+});
+
+// PROJECT CREATE POST
+router.post("/projectcreate", uploadCloud.single('imgPath'), function(req,res) {
+    Project.create({
+      owner: req.body.theOwner,
+      client: req.body.theClient,
+      projectName: req.body.theProjectName,
+      projectMessage: req.body.theProjectMessage,
+      imgPath: req.file.url
+    })
+    .then ((theUser) => {
+  res.redirect('/')
+})
+});
+
+
+ //Route 4: serve up the project details & approval/denial options
+ router.get('/projectdetails', function(req, res){
+  res.render('projectdetails');
+});
+
+console.log(router.stack)
+
 
 
 

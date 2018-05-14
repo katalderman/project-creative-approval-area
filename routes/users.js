@@ -72,7 +72,7 @@ router.get('/edituser/:id', (req, res, next) => {
     if(userFromDb.role === 'CLIENT'){
       isClient = true
     }
-    console.log("user thing: ", userFromDb)
+    // console.log("user thing: ", userFromDb)
     res.render('passport/edituser', {user: userFromDb, isAdmin, isClient})
   })
 }) 
