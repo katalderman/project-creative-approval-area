@@ -3,8 +3,8 @@
 <!-- Intro -->
 <section id="intro" class="main">
 <h2>New Project</h2>
-<form action="/projectcreate" enctype="multipart/form-data" method="POST" id="form-container">
 
+<form action="/projectcreate" enctype="multipart/form-data" method="POST" id="form-container">
 <label for="owner">Project Owner</label>
 <select name="theOwner">
 	{{#each user}}
@@ -25,12 +25,13 @@
   <input id="owner" type="text" name="theProjectName" placeholder="Give the project a wonderful name">
 <br><br>
 
+<label for="projectname">Project Message</label>
 <textarea  id="projectmessage" name="theProjectMessage" cols="40" rows="5"></textarea>
 
-{{!-- <label for="component">Upload your file for approval here:</label>
+<label for="component">Upload your file for approval here:</label>
    <input type="file" name="photo">
-   <input type="submit" class="button medium dark" value="Upload Photo">
-<br><br> --}}
+   {{!-- <input type="submit" class="button medium dark" value="Upload Photo"> --}}
+<br><br>
 
   <button class="button big dark">Create Project</button>
 		

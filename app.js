@@ -147,4 +147,5 @@ app.post('/upload',multer(multerConfig).single('photo'),function(req,res){
  });
  // Please note the .single method calls ('photo'), and that 'photo' is the name of our file-type input field!
 
+// console.log(app._router.stack)
 module.exports = app;

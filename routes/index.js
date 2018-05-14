@@ -59,26 +59,42 @@ router.post('/projectcreate',uploadCloud.single('photo'),(req, res, next) => {
     });
   });
 
- // serve up the admin area
- router.get('/dashboardAdmin', function(req, res,next){
-  // console.log(req.session);
+
+function renderDashboard(req,res,next) {
   User.find({})
   .then( user => {
     console.log(user);
-      res.render('dashboardAdmin', { user });
+      res.render('dashboardAdmin', { 
+        user: user,
+        redirectLocation: req.protocol+'://'+req.hostname+':3000'+'/dashboardAdmin'
+       });
   } )
   .catch( error => {
       console.log("Error while displaying:", error );
-  } )
-  //  res.render('dashboardAdmin');
+  } )}
+
+
+ // serve up the admin area
+ router.get('/dashboardAdmin', function(req, res, next){
+   renderDashboard(req,res,next);
+  // // console.log(req.session);
+  // User.find({})
+  // .then( user => {
+  //   console.log(user);
+  //     res.render('dashboardAdmin', { user });
+  // } )
+  // .catch( error => {
+  //     console.log("Error while displaying:", error );
+  // } )
+  // //  res.render('dashboardAdmin');
  });
 
- //Route 4: serve up the project details & approval/denial options
- router.get('/projectdetails', function(req, res){
-   res.render('projectdetails');
- });
+//  //Route 4: serve up the project details & approval/denial options
+//  router.get('/projectdetails', function(req, res){
+//    res.render('projectdetails');
+//  });
  
- //Route 4: serve up the project details & approval/denial options
+ // serve up the user details
  router.get('/viewuser', function(req, res){
    console.log('who is logged in: ', req.user)
    res.render('passport/viewuser', { user: req.user });

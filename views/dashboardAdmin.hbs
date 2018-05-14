@@ -38,11 +38,13 @@
 	  		{{#each user}}
         	<li>
             <a href="/viewuser/{{this._id}}">{{ this.email }}</a>
-            {{!-- <form action="/viewuser/{{this._id}}/delete" method="post"> --}}
-                {{!-- <button type="submit">DELETE</button> --}}
+            {{!-- <form action="/users/{{this._id}}" method="DELETE">
+                <button type="submit">DELETE</button></form> --}}
 				<a href="/edituser/{{this._id}}"><i class="material-icons">edit</i></a>
-				 <a href="/edituser/{{this._id}}/delete"><i class="material-icons">delete</i></a>
-            {{!-- </form> --}}
+				<a href="/users/{{this._id}}" class="deleteUser"><i class="material-icons">delete</i></a>
+				{{!-- <button class="deleteuser" value="delete" href="/users/{{this._id}}">Delete</button> --}}
+
+
         	</li>
 			{{else}}
   			<p class="empty">No content</p>
@@ -57,7 +59,19 @@
 
 </div>
 
-
+<script>
+	$('.deleteUser').click(function(event){
+		event.preventDefault();
+		$.ajax({
+			url: $(this).attr('href'),
+			method: 'DELETE',
+			success:function(response){
+				window.location.href='{{redirectLocation}}';
+			}
+		});
+		return false;
+	});
+</script>
 {{!-- <select>
 	{{#each user}}
   	<option value="{{ this.email }}">{{ this.email }}</option>

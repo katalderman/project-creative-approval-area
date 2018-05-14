@@ -72,7 +72,7 @@ router.get('/edituser/:id', (req, res, next) => {
     if(userFromDb.role === 'CLIENT'){
       isClient = true
     }
-    // console.log("user thing: ", userFromDb)
+    console.log("user thing: ", userFromDb)
     res.render('passport/edituser', {user: userFromDb, isAdmin, isClient})
   })
 }) 
@@ -105,17 +105,22 @@ router.post('/edituser/:id', (req, res, next) => {
   })
 })
 
+
 // DELETE 
-router.delete('/users/:id', (req, res, next) => {
+// url: localhost:3000/celebrities/1234567890/delete
+// this route is post route so it won't be displayed, it's the action part of the delete form
+router.delete('users/:id', (req, res, next) => {
   const userId = req.params.id;
   User.findByIdAndRemove(userId)
   .then(() => {
-    res.status(200).send()
+      res.redirect("/dashboardAdmin");
   })
   .catch( error => {
       console.log("Error while deleting: ", error)
   })
 })
+
+
 
 
 
@@ -139,5 +144,4 @@ router.get("/logout", (req, res) => {
 });
 
 
-// console.log(router.stack)
 module.exports = router;
