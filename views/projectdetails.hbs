@@ -1,35 +1,50 @@
 <div id="wrapper">
+<section id="intro" class="main">
+<h2>Edit Project {{project.projectName}}</h2>
+<form action="/projectdetails/{{ project._id }}" method="post">
+  {{!-- <label for="owner">Project Owner</label>
+  <input id="owner" type="text" name="editedowner" value="{{ user.owner }}">
+  <br><br> --}}
 
-<!-- Intro -->
-	<section id="intro" class="main">
-    <h3>{{project.projectName}}</h3>
-		<h3>From {{project.projectOwner}}</h3>
-    <h3>Approvals by {{project.projectClient}}</h3>
-    <h4>Message from Designer: {{project.projectMessage}}</h4>
-    <h4>Preview:</h4> 
-{{project.projectComponent}}
+<label for="owner">Project Owner</label>
+<select name="editedowner">
+	{{#each user}}
+  	<option value="{{ this._id }}">{{ this.email }}</option>
+	{{/each}}
+</select>
+<br><br>
 
+<label for="client">Project Client</label>
+<select name="editedclient">
+	{{#each user}}
+  	<option value="{{ this._id }}">{{ this.email }}</option>
+	{{/each}}
+</select>
+<br><br>
 
-
-<form action="/upload" enctype="multipart/form-data" method="POST" id="form-container">
-  <h4>Upload any clarifying files here:</h4>
-   <input type="file" name="component">{{!-- name was photo --}}
-   <input type="submit" class="button medium dark" value="Upload Photo">
+  <label for="firstname">Project Name</label>
+  <input id="firstname" type="text" name="editedprojectname" value="{{ project.projectName }}">
+  <br><br>
+  <label for="lastname">Project Message</label>
+  <input id="lastname" type="text" name="editedprojectmessage" value="{{ project.projectMessage }}">
+  <br><br>
+  <label for="lastname">Project Image</label>
+  <img src="{{project.imgPath}}">
+  <br><br>
+  <label for="isapproved">Approval Status</label>
+  <input id="approvedStatus" type="radio" name="isApproved" value="APPROVED" checked>Approved (Limited Permissions)</br>
+  <input id="unapprovedStatus" type="radio" name="isApproved" value="NOT APPROVED" >Not Approved (Full Permissions)</br>
   
+  <br><br>
 
-  <h4>Approval:</h4>
-  <input id="approvalyes" type="radio" name="approval" value="YES">APPROVED</br>
-  <input id="approvalno" type="radio" name="approval" value="NO">NOT APPROVED</br>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
 
-
-		<ul class="actions">
-			<li><a href="#" class="button big dark">Submit Changes / Approval</a></li>
-		</ul>
-
-  </form>
-
-	</section>
-
+  <button class="button big dark" type="submit">Save Changes</button>
+</form>
+</section>
 </div>
 
 

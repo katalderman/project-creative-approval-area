@@ -15,13 +15,17 @@
 	<section class="main items">
 		<article class="item">
       		<h3>Projects</h3>
+			<ul>
 			{{#each project}}
-			<li>
-			Project Name:{{this.projectName}}
+				<li>
+			    <a href="/projectdetails/{{this._id}}">{{this.projectName}}</a>
+					<a href="/projectdetails/{{this._id}}"><i class="material-icons">edit</i></a>
+					<a href="/projects/{{this._id}}" class="deleteProject"><i class="material-icons">delete</i></a>
         	</li>
 			{{else}}
   			<p class="empty">No content</p>
     		{{/each}}
+				</ul>
 			<ul class="actions">
 			<li><a href="/projectcreate" class="button dark">Create New Project</a></li>
 			</ul>
@@ -33,14 +37,9 @@
 			<ul>
 	  		{{#each user}}
         	<li>
-            <a href="/viewuser/{{this._id}}">{{ this.email }}</a>
-            {{!-- <form action="/users/{{this._id}}" method="DELETE">
-                <button type="submit">DELETE</button></form> --}}
+        <a href="/viewuser/{{this._id}}">{{ this.email }}</a>
 				<a href="/edituser/{{this._id}}"><i class="material-icons">edit</i></a>
 				<a href="/users/{{this._id}}" class="deleteUser"><i class="material-icons">delete</i></a>
-				{{!-- <button class="deleteuser" value="delete" href="/users/{{this._id}}">Delete</button> --}}
-
-
         	</li>
 			{{else}}
   			<p class="empty">No content</p>
@@ -68,6 +67,23 @@
 		return false;
 	});
 </script>
+
+
+
+<script>
+	$('.deleteProject').click(function(event){
+		event.preventDefault();
+		$.ajax({
+			url: $(this).attr('href'),
+			method: 'DELETE',
+			success:function(response){
+				window.location.href='{{redirectLocation}}';
+			}
+		});
+		return false;
+	});
+</script>
+
 {{!-- <select>
 	{{#each user}}
   	<option value="{{ this.email }}">{{ this.email }}</option>
